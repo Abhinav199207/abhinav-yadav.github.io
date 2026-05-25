@@ -1,12 +1,25 @@
-/* ===== Smooth active nav highlight on scroll ===== */
+/* ===== Mobile nav toggle ===== */
+const toggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+toggle?.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
+// Close on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+/* ===== Active nav highlight on scroll ===== */
 const sections = document.querySelectorAll('section[id], header[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
+const links = document.querySelectorAll('.nav-links a');
 
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        navLinks.forEach((link) => {
+        links.forEach((link) => {
           link.classList.toggle(
             'active',
             link.getAttribute('href') === `#${entry.target.id}`
@@ -15,24 +28,39 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.5 }
+  { threshold: 0.45 }
 );
 
-sections.forEach((section) => observer.observe(section));
+sections.forEach((s) => observer.observe(s));
 
-/* ===== Project cards (add your projects here) ===== */
+/* ===== Navbar hide/show on scroll ===== */
+let lastScroll = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY;
+  if (currentScroll > 80 && currentScroll > lastScroll) {
+    navbar.style.transform = 'translateY(-100%)';
+  } else {
+    navbar.style.transform = 'translateY(0)';
+  }
+  navbar.style.transition = 'transform 0.3s ease';
+  lastScroll = currentScroll;
+});
+
+/* ===== Project cards — add your projects here ===== */
 const projects = [
-  // Example — uncomment and edit to add cards:
+  // Uncomment and edit to add your work:
   // {
   //   title: 'Project Name',
-  //   description: 'A short description of what it does.',
+  //   description: 'Short description of what it does and the tech used.',
   //   url: 'https://github.com/Abhinav199207/project-name',
   // },
 ];
 
 const grid = document.getElementById('projects-grid');
 
-if (projects.length > 0) {
+if (grid && projects.length > 0) {
   grid.innerHTML = '';
   projects.forEach(({ title, description, url }) => {
     const card = document.createElement('div');
