@@ -40,3 +40,7 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealBlocks.forEach((block) => revealObserver.observe(block));
+
+document.querySelectorAll('.chapter').forEach((chapter, i) => {
+  chapter.style.setProperty('--i', i);
+});
