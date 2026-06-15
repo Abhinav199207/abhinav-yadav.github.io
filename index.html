@@ -7,7 +7,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
+  <style>
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b3bad0;
+      border: 1px solid #23293c;
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      background: rgba(14, 18, 30, 0.7);
+    }
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #6ee7a0;
+      box-shadow: 0 0 8px rgba(110, 231, 160, 0.6);
+      flex-shrink: 0;
+    }
+  </style>
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -29,7 +53,7 @@
   <header class="hero" id="home">
     <div class="hero-grid reveal">
       <div class="hero-copy">
-        <span class="live-badge"><span class="pulse"></span> JPMC &middot; Data Scientist Director</span>
+        <span class="live-badge"><span class="live-dot" aria-hidden="true"></span> JPMC &middot; Data Scientist Director</span>
         <h1>I build <em>agentic systems</em> that solve real problems.</h1>
         <p class="hero-sub">
           13+ years across AI, statistics, and technology. Data Scientist Director at JP Morgan —
